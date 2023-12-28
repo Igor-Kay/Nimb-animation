@@ -6,10 +6,10 @@ var renderer = new THREE.WebGLRenderer({
   antialias: true,
   alpha: true
 });
-renderer.outputEncoding = THREE.sRGBEncoding
+renderer.outputEncoding = THREE.sRGBEncoding;
 
 var camera = new THREE.PerspectiveCamera(10, 1, 1, 1000);
-camera.position.set(0, 0, 3.2); 
+camera.position.set(0, 0, 3.2);
 
 var canvas = renderer.domElement;
 document.querySelector('#character').appendChild(canvas);
@@ -22,11 +22,12 @@ var light2 = new THREE.PointLight(0xFFFFFF, 9, 0);
 light2.position.set(-0.756, -5.324, 2.677);
 scene.add(light2);
 
-const modelPath = 'assets/torus-without-light.glb'
+const modelPath = 'assets/torus-without-light.glb';
 
 const loader = new GLTFLoader();
+let model;
 loader.load(modelPath, function (gltf) {
-  const model = gltf.scene;
+  model = gltf.scene;
 
   const scale = 0.07;
   model.scale.set(scale, scale, scale);
@@ -42,18 +43,32 @@ let clock = new THREE.Clock();
 let speed = 2; 
 let amplitude = 0.3;
 
+let isMouseOverModel = false;
+
+document.querySelector('#character').addEventListener('mouseover', function () {
+  isMouseOverModel = true;
+});
+
+document.querySelector('#character').addEventListener('mouseout', function () {
+  isMouseOverModel = false;
+});
+
 renderer.setAnimationLoop(() => {
   let delta = clock.getDelta();
 
-  base.rotation.y += speed * delta;
-  // base.rotation.x = Math.sin(base.rotation.y) * amplitude;
-  base.rotation.z = Math.sin(base.rotation.y) * amplitude;
-
+  if (isMouseOverModel) {
+    base.rotation.y += speed * delta;
+    base.rotation.z = Math.sin(base.rotation.y) * amplitude;
+  } else {
+    base.rotation.x += speed * delta;
+    base.rotation.x %= Math.PI * 2;
+  }
 
   if (resize(renderer)) {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
   }
+
   renderer.render(scene, camera);
 });
 
