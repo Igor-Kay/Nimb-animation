@@ -9,7 +9,7 @@ var renderer = new THREE.WebGLRenderer({
 renderer.outputEncoding = THREE.sRGBEncoding
 
 var camera = new THREE.PerspectiveCamera(10, 1, 1, 1000);
-camera.position.set(0, 0, 3.2);
+camera.position.set(0, 0, 3.2); 
 
 var canvas = renderer.domElement;
 document.querySelector('#character').appendChild(canvas);
