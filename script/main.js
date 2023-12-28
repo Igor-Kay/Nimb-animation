@@ -43,26 +43,26 @@ let clock = new THREE.Clock();
 let speed = 2; 
 let amplitude = 1;
 
-let isMouseOverModel = false;
+// let isMouseOverModel = false;
 
-document.querySelector('#character').addEventListener('mouseover', function () {
-  isMouseOverModel = true;
-});
+// document.querySelector('#character').addEventListener('mouseover', function () {
+//   isMouseOverModel = true;
+// });
 
-document.querySelector('#character').addEventListener('mouseout', function () {
-  isMouseOverModel = false;
-});
+// document.querySelector('#character').addEventListener('mouseout', function () {
+//   isMouseOverModel = false;
+// });
 
 renderer.setAnimationLoop(() => {
   let delta = clock.getDelta();
 
-  if (isMouseOverModel) {
-    base.rotation.y += speed * delta;
-    base.rotation.z = Math.sin(base.rotation.y) * amplitude;
-  } else {
+  // if (isMouseOverModel) {
+  //   base.rotation.y += speed * delta;
+  //   base.rotation.z = Math.sin(base.rotation.y) * amplitude;
+  // } else {
     base.rotation.x += speed * delta;
     base.rotation.x %= Math.PI * 2;
-  }
+  // }
 
   if (resize(renderer)) {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
