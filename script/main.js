@@ -41,7 +41,7 @@ scene.add(base);
 
 let clock = new THREE.Clock();
 let speed = 2; 
-let amplitude = 0.3;
+let amplitude = 1;
 
 let isMouseOverModel = false;
 
