@@ -23,7 +23,7 @@ var light2 = new THREE.PointLight(0xFFFFFF, 4, 0);
 light2.position.set(-0.756, -5.324, 2.677);
 scene.add(light2);
 
-const modelPath = 'assets/scene (1).gltf';
+const modelPath = 'assets/torus.gltf';
 
 const loader = new GLTFLoader();
 let model;
