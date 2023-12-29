@@ -10,19 +10,20 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 
 var camera = new THREE.PerspectiveCamera(10, 1, 1, 1000);
 camera.position.set(0, 0, 3.2);
+camera.rotation.set(0, 0, 0)
 
 var canvas = renderer.domElement;
 document.querySelector('#character').appendChild(canvas);
 
-var light = new THREE.PointLight(0xFFFFFF, 9, 0);
+var light = new THREE.PointLight(0xFFFFFF, 4, 0);
 light.position.set(-2.005, 8.483, 10.960);
 scene.add(light);
 
-var light2 = new THREE.PointLight(0xFFFFFF, 9, 0);
+var light2 = new THREE.PointLight(0xFFFFFF, 4, 0);
 light2.position.set(-0.756, -5.324, 2.677);
 scene.add(light2);
 
-const modelPath = 'assets/torus-without-light.glb';
+const modelPath = 'assets/scene (1).gltf';
 
 const loader = new GLTFLoader();
 let model;
@@ -38,6 +39,9 @@ loader.load(modelPath, function (gltf) {
 
 let base = new THREE.Object3D();
 scene.add(base);
+
+
+base.rotation.set(0.3,0,0);
 
 let clock = new THREE.Clock();
 let speed = 2; 
@@ -60,9 +64,13 @@ renderer.setAnimationLoop(() => {
   //   base.rotation.y += speed * delta;
   //   base.rotation.z = Math.sin(base.rotation.y) * amplitude;
   // } else {
-    base.rotation.x += speed * delta;
-    base.rotation.x %= Math.PI * 2;
+    // base.rotation.y += speed * delta;
+    // base.rotation.y %= Math.PI * 2;
   // }
+
+
+    base.rotation.y += speed * delta;
+    base.rotation.y %= Math.PI * 2;
 
   if (resize(renderer)) {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
