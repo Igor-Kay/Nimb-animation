@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.133.1';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/loaders/GLTFLoader.js';
 
 var scene = new THREE.Scene();
-var renderer = new THREE.WebGLRenderer({
+const renderer = new THREE.WebGLRenderer({
   antialias: true,
   alpha: true
 });
@@ -14,74 +14,69 @@ camera.position.set(0, 0, 3.2);
 var canvas = renderer.domElement;
 document.querySelector('#character').appendChild(canvas);
 
-var light = new THREE.PointLight(0xFFFFFF, 3, 0);
-light.position.set(0.625, 10, -0.008);
-scene.add(light);
+// var light = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light.position.set(0.625, 10, -0.008);
+// scene.add(light);
 
-var light2 = new THREE.PointLight(0xFFFFFF, 3, 0);
-light2.position.set(0.625, -10, -0.008);
-scene.add(light2);
+// var light2 = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light2.position.set(0.625, -10, -0.008);
+// scene.add(light2);
 
-var light3 = new THREE.PointLight(0xFFFFFF, 3, 0);
-light3.position.set(0, 0, 10);
-scene.add(light3); //
+// var light3 = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light3.position.set(0, 0, 10);
+// scene.add(light3); //
 
-var light4 = new THREE.PointLight(0xFFFFFF, 3, 0);
-light4.position.set(0, 0, -10);
-scene.add(light4);
+// var light4 = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light4.position.set(0, 0, -10);
+// scene.add(light4);
 
-var light5 = new THREE.PointLight(0xFFFFFF, 3, 0);
-light5.position.set(-10, 0, 0);//
-scene.add(light5);
+// var light5 = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light5.position.set(-10, 0, 0);//
+// scene.add(light5);
 
-var light6 = new THREE.PointLight(0xFFFFFF, 3, 0);
-light6.position.set(10, 0, 0); //
-scene.add(light6);
+// var light6 = new THREE.PointLight(0xFFFFFF, 3, 0);
+// light6.position.set(10, 0, 0); //
+// scene.add(light6);
 
-const modelPath = 'assets/torus.gltf';
+const modelPath = 'assets/scene (2).gltf';
+const speed = 2;
+const assetLoader = new GLTFLoader();
 
-const loader = new GLTFLoader();
-let model;
+let mixer;
 
-loader.load(modelPath, function (gltf) {
 
-  model = gltf.scene;
+assetLoader.load(modelPath, function(gltf) {
+    const model = gltf.scene;
+    const scale = 0.15;
+    model.scale.set(scale, scale, scale);
+    model.rotation.set(0.3, 0, 0);
+    scene.add(model);
+    mixer = new THREE.AnimationMixer(model);
+    const clips = gltf.animations;
+    clips.forEach(function(clip) {
+        const action = mixer.clipAction(clip);
+        action.play();
+    });
 
-  const scale = 0.15;
-  model.scale.set(scale, scale, scale);
-  base.add(model);
-
+}, undefined, function(error) {
+    console.error(error);
 });
 
-let base = new THREE.Object3D();
-scene.add(base);
+const clock = new THREE.Clock();
+function animate() {
 
-base.rotation.set(0.3, 0, 0);
+    if(mixer)
+        mixer.update(clock.getDelta());
+    renderer.render(scene, camera);
 
-let clock = new THREE.Clock();
-let speed = 2;
+    if (resize(renderer)) {
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+}
 
-let light3Direction = 1;
 
-renderer.setAnimationLoop(() => {
-  let delta = clock.getDelta();
-
-  base.rotation.y += speed * delta;
-  base.rotation.y %= Math.PI * 2;
-
-  light3.position.x += speed * delta * light3Direction;
-
-  if (light3.position.x > 10 || light3.position.x < -10) {
-    light3Direction *= -1;
-  }
-
-  if (resize(renderer)) {
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-  }
-
-  renderer.render(scene, camera);
-});
+renderer.setAnimationLoop(animate);
 
 function resize(renderer) {
   const canvas = renderer.domElement;
