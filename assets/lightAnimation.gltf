@@ -1,0 +1,393 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "THREE.GLTFExporter"
+  },
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        9
+      ]
+    }
+  ],
+  "scene": 0,
+  "nodes": [
+    {
+      "rotation": [
+        0.000022773270757170394,
+        0.7071068286895752,
+        -0.000022773270757170394,
+        0.7071068286895752
+      ],
+      "translation": [
+        5.894723415374756,
+        0.0014836788177490234,
+        0
+      ],
+      "scale": [
+        17.152711868286133,
+        17.1527099609375,
+        17.1527099609375
+      ],
+      "name": "Area004",
+      "extras": {
+        "name": "Area.004"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 0
+        }
+      }
+    },
+    {
+      "rotation": [
+        -0.7071067690849304,
+        0,
+        0,
+        0.7071068286895752
+      ],
+      "translation": [
+        0,
+        0.31520554423332214,
+        0
+      ],
+      "scale": [
+        0.39728108048439026,
+        0.39728105068206787,
+        0.39728105068206787
+      ],
+      "name": "Area",
+      "extras": {
+        "name": "Area"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 1
+        }
+      }
+    },
+    {
+      "rotation": [
+        0.7070879340171814,
+        0,
+        0,
+        0.7071256637573242
+      ],
+      "translation": [
+        0,
+        -0.3637664318084717,
+        0
+      ],
+      "scale": [
+        0.7677136659622192,
+        0.7677136063575745,
+        0.7677136063575745
+      ],
+      "name": "Area001",
+      "extras": {
+        "name": "Area.001"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 2
+        }
+      }
+    },
+    {
+      "rotation": [
+        0.000022786854970036075,
+        0.7071068286895752,
+        -0.000022786854970036075,
+        0.7071068286895752
+      ],
+      "translation": [
+        0.5813760161399841,
+        0.00020549383771140128,
+        0
+      ],
+      "scale": [
+        0.6167874932289124,
+        0.6167874336242676,
+        0.6167874336242676
+      ],
+      "name": "Area002",
+      "extras": {
+        "name": "Area.002"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 3
+        }
+      }
+    },
+    {
+      "rotation": [
+        0.00002278684223711025,
+        -0.7075350880622864,
+        0.000022786876797908917,
+        0.7066782712936401
+      ],
+      "translation": [
+        -0.5994582772254944,
+        0.00020549383771140128,
+        0
+      ],
+      "scale": [
+        0.6677142381668091,
+        0.66771399974823,
+        0.6677141785621643
+      ],
+      "name": "Area003",
+      "extras": {
+        "name": "Area.003"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 4
+        }
+      }
+    },
+    {
+      "rotation": [
+        0.00003216587356291711,
+        -0.00035952459438703954,
+        0,
+        1
+      ],
+      "translation": [
+        0.005646375007927418,
+        0.00020549383771140128,
+        0.6006655693054199
+      ],
+      "scale": [
+        0.6677142977714539,
+        0.66771399974823,
+        0.6677141785621643
+      ],
+      "name": "Area005",
+      "extras": {
+        "name": "Area.005"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 5
+        }
+      }
+    },
+    {
+      "rotation": [
+        0,
+        1,
+        -0.000032225478207692504,
+        0.00011094013461843133
+      ],
+      "translation": [
+        0.005646375007927418,
+        0.00020549383771140128,
+        -0.6095660328865051
+      ],
+      "scale": [
+        0.6677142381668091,
+        0.66771399974823,
+        0.6677142381668091
+      ],
+      "name": "Area006",
+      "extras": {
+        "name": "Area.006"
+      },
+      "extensions": {
+        "KHR_lights_punctual": {
+          "light": 6
+        }
+      }
+    },
+    {
+      "scale": [
+        7.220065116882324,
+        7.220065116882324,
+        7.220065116882324
+      ],
+      "name": "axis",
+      "extras": {
+        "name": "axis"
+      },
+      "children": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    {
+      "name": "torusglb",
+      "extras": {
+        "name": "torus.glb",
+        "uuid": "e0e557ff-21bc-4619-9397-05ff097d4300",
+        "assets reported": {}
+      },
+      "children": [
+        0,
+        7
+      ]
+    },
+    {
+      "name": "scene (2).gltf",
+      "children": [
+        8
+      ]
+    }
+  ],
+   "extensions": {
+    "KHR_lights_punctual": {
+      "lights": [
+        {
+          "name": "Area004",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity":0,
+          "type": "point"
+        },
+        {
+          "name": "Area",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 5,
+          "type": "point"
+        },
+        {
+          "name": "Area001",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 1,
+          "type": "point"
+        },
+        {
+          "name": "Area002",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 10,
+          "type": "point"
+        },
+        {
+          "name": "Area003",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 10,
+          "type": "point"
+        },
+        {
+          "name": "Area005",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 10,
+          "type": "point"
+        },
+        {
+          "name": "Area006",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "intensity": 10,
+          "type": "point"
+        }
+      ]
+    }
+  },
+  "animations": [
+    {
+      "name": "axisAction",
+      "samplers": [
+        {
+          "input": 0,
+          "output": 1,
+          "interpolation": "LINEAR"
+        }
+      ],
+      "channels": [
+        {
+          "sampler": 0,
+          "target": {
+            "node": 7,
+            "path": "rotation"
+          }
+        }
+      ]
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 484
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 484,
+      "byteLength": 1936
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 2420,
+      "uri": "data:application/octet-stream;base64,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"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 121,
+      "max": [
+        5
+      ],
+      "min": [
+        0
+      ],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 121,
+      "max": [
+        0,
+        0.9996573328971863,
+        0,
+        1
+      ],
+      "min": [
+        0,
+        -1,
+        0,
+        4.371138828673793e-8
+      ],
+      "type": "VEC4"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_lights_punctual"
+  ]
+}

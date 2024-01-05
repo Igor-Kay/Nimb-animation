@@ -2,7 +2,7 @@ import * as THREE from 'https://cdn.skypack.dev/three@0.133.1';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/loaders/GLTFLoader.js';
 
 var scene = new THREE.Scene();
-const renderer = new THREE.WebGLRenderer({
+var renderer = new THREE.WebGLRenderer({
   antialias: true,
   alpha: true
 });
@@ -39,44 +39,49 @@ document.querySelector('#character').appendChild(canvas);
 // scene.add(light6);
 
 const modelPath = 'assets/scene (2).gltf';
-const speed = 2;
-const assetLoader = new GLTFLoader();
+
+const loader = new GLTFLoader();
+let model;
 
 let mixer;
 
+loader.load(modelPath, function (gltf) {
 
-assetLoader.load(modelPath, function(gltf) {
-    const model = gltf.scene;
-    const scale = 0.15;
-    model.scale.set(scale, scale, scale);
-    model.rotation.set(0.3, 0, 0);
-    scene.add(model);
-    mixer = new THREE.AnimationMixer(model);
-    const clips = gltf.animations;
-    clips.forEach(function(clip) {
-        const action = mixer.clipAction(clip);
-        action.play();
-    });
+  model = gltf.scene;
+  const scale = 0.15;
+  model.scale.set(scale, scale, scale);
+  base.add(model);
+  mixer = new THREE.AnimationMixer(model);
+  const clips = gltf.animations;
+  const clip = THREE.AnimationClip.findByName(clips, 'axisAction');
+  const action = mixer.clipAction(clip);
+  action.play();
 
-}, undefined, function(error) {
-    console.error(error);
 });
 
-const clock = new THREE.Clock();
-function animate() {
+let base = new THREE.Object3D();
+scene.add(base);
 
-    if(mixer)
-        mixer.update(clock.getDelta());
-    renderer.render(scene, camera);
+base.rotation.set(0.3, 0, 0);
 
-    if (resize(renderer)) {
-      camera.aspect = canvas.clientWidth / canvas.clientHeight;
-      camera.updateProjectionMatrix();
-    }
-}
+let clock = new THREE.Clock();
+let speed = 1;
 
+renderer.setAnimationLoop(() => {
 
-renderer.setAnimationLoop(animate);
+  let delta = clock.getDelta();
+  // base.rotation.y += speed * delta;
+  // base.rotation.y %= Math.PI * 2;
+  if (resize(renderer)) {
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+  }
+  if (mixer) {
+    mixer.update(delta);
+  }
+
+  renderer.render(scene, camera);
+});
 
 function resize(renderer) {
   const canvas = renderer.domElement;
