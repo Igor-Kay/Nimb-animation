@@ -1,5 +1,8 @@
 import * as THREE from 'https://cdn.skypack.dev/three@0.133.1';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/loaders/GLTFLoader.js';
+import { EffectComposer } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'https://cdn.skypack.dev/three@0.133.1/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 var scene = new THREE.Scene();
 var renderer = new THREE.WebGLRenderer({
@@ -7,12 +10,20 @@ var renderer = new THREE.WebGLRenderer({
   alpha: true
 });
 renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.setPixelRatio(window.devicePixelRatio || 2);
 
 var camera = new THREE.PerspectiveCamera(10, 1, 1, 1000);
-camera.position.set(0, 0, 3.2);
+camera.position.set(0, 0, 4);
 
 var canvas = renderer.domElement;
 document.querySelector('#character').appendChild(canvas);
+
+var composer = new EffectComposer(renderer);
+var renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
+
+var bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 2, 0.4, .85);
+composer.addPass(bloomPass);
 
 const modelPath = 'assets/scene (2).gltf';
 
@@ -46,17 +57,16 @@ let speed = 1;
 renderer.setAnimationLoop(() => {
 
   let delta = clock.getDelta();
-  //  base.rotation.y += speed * delta;
-  //  base.rotation.y %= Math.PI * 2;
   if (resize(renderer)) {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
+    composer.setSize(canvas.clientWidth, canvas.clientHeight);
   }
   if (mixer) {
     mixer.update(delta);
   }
 
-  renderer.render(scene, camera);
+  composer.render(delta);
 });
 
 function resize(renderer) {
