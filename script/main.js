@@ -7,7 +7,7 @@ var renderer = new THREE.WebGLRenderer({
   alpha: true
 });
 renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.setPixelRatio(window.devicePixelRatio || 1);
+renderer.setPixelRatio(window.devicePixelRatio || 2);
 
 var camera = new THREE.PerspectiveCamera(10, 1, 1, 1000);
 camera.position.set(0, 0, 7.5);
